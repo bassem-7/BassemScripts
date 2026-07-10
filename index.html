@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bassem Scripts</title>
+
+<style>
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+header{
+    text-align:center;
+    padding:30px;
+}
+
+h1{
+    font-size:50px;
+    color:#00ff88;
+}
+
+.search{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.search input{
+    width:60%;
+    max-width:500px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+}
+
+.section{
+    padding:20px;
+}
+
+.map{
+    background:#222;
+    padding:15px;
+    margin:10px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.scripts{
+    display:none;
+    background:#1a1a1a;
+    padding:10px;
+    margin-top:10px;
+    border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Bassem Scripts</h1>
+    <p>سكريبتات مجانية بلا مفتاح و امنة</p>
+</header>
+
+<div class="search">
+    <input type="text" placeholder="ابحث عن ماب...">
+</div>
+
+<div class="section">
+    <h2>المابات</h2>
+
+    <div class="map" onclick="toggleScripts('map1')">
+        Grow a Garden
+        <div class="scripts" id="map1">
+            <p>سكربت 1</p>
+            <p>سكربت 2</p>
+            <p>سكربت 3</p>
+        </div>
+    </div>
+
+    <div class="map" onclick="toggleScripts('map2')">
+        Blox Fruits
+        <div class="scripts" id="map2">
+            <p>سكربت فارم</p>
+            <p>سكربت مهام</p>
+            <p>سكربت تنقل</p>
+        </div>
+    </div>
+
+    <div class="map" onclick="toggleScripts('map3')">
+        Brookhaven
+        <div class="scripts" id="map3">
+            <p>سكربت 1</p>
+            <p>سكربت 2</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function toggleScripts(id){
+    let box = document.getElementById(id);
+
+    if(box.style.display === "block"){
+        box.style.display = "none";
+    }else{
+        box.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
