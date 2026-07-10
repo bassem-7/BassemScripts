@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bassem Scripts</title>
 <link rel="icon" type="image/png" href="favicon.png">
-    
+
 <style>
+
 body{
     background:#111;
     color:white;
@@ -18,22 +19,53 @@ body{
 h1{
     color:#ffffff;
     margin-top:40px;
+    font-size:50px;
 }
 
-input{
-    width:60%;
-    max-width:500px;
-    padding:12px;
-    border-radius:10px;
+.search-container{
+    width:500px;
+    max-width:90%;
+    margin:20px auto;
+    position:relative;
+}
+
+#searchInput{
+    width:100%;
+    padding:15px;
     border:none;
+    border-radius:12px;
+    background:#222;
+    color:white;
+    font-size:16px;
+}
+
+#results{
+    background:#1a1a1a;
+    border-radius:12px;
+    margin-top:8px;
+    overflow:hidden;
+}
+
+.result{
+    padding:15px;
+    cursor:pointer;
+    border-bottom:1px solid #333;
+}
+
+.result:hover{
+    background:#2a2a2a;
 }
 
 .map{
     background:#222;
     margin:20px auto;
-    width:300px;
+    width:320px;
     padding:20px;
-    border-radius:10px;
+    border-radius:12px;
+}
+
+.map:hover{
+    transform:translateY(-3px);
 }
 
 a{
@@ -45,7 +77,11 @@ button{
     border:none;
     border-radius:8px;
     cursor:pointer;
+    background:#00ff88;
+    color:black;
+    font-weight:bold;
 }
+
 </style>
 </head>
 
@@ -53,7 +89,17 @@ button{
 
 <h1>Bassem Scripts</h1>
 
-<input type="text" placeholder="ابحث هنا">
+<div class="search-container">
+
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 ابحث عن ماب..."
+onkeyup="searchMaps()">
+
+<div id="results"></div>
+
+</div>
 
 <h2>المابات</h2>
 
@@ -64,12 +110,62 @@ button{
     </a>
 </div>
 
- <div class="map">
+<div class="map">
     <h3>🐶 Animal Hospital</h3>
     <a href="animalhospital.html">
         <button>فتح الصفحة</button>
     </a>
 </div>
-    
+
+<script>
+
+const maps = [
+
+{
+name:"Grow a Garden",
+page:"garden.html"
+},
+
+{
+name:"Animal Hospital",
+page:"animalhospital.html"
+}
+
+];
+
+function searchMaps(){
+
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let results =
+document.getElementById("results");
+
+results.innerHTML = "";
+
+if(input === ""){
+return;
+}
+
+maps.forEach(map=>{
+
+if(map.name.toLowerCase().includes(input)){
+
+results.innerHTML += `
+<div class="result"
+onclick="window.location.href='${map.page}'">
+🎮 ${map.name}
+</div>
+`;
+
+}
+
+});
+
+}
+
+</script>
+
 </body>
 </html>
