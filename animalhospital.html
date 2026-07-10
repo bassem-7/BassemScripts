@@ -1,43 +1,185 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Animal Hospital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animal Hospital | Bassem Scripts</title>
 <link rel="icon" type="image/png" href="favicon.png">
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    background:#111;
+    background:#0f0f0f;
     color:white;
-    font-family:Arial;
+    font-family:Arial,sans-serif;
+}
+
+header{
     text-align:center;
+    padding:40px 20px;
+}
+
+header h1{
+    color:#00ff88;
+    font-size:55px;
+}
+
+header p{
+    color:#bdbdbd;
+    margin-top:10px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.script-card{
+    background:#1a1a1a;
+    border-radius:15px;
+    overflow:hidden;
+    width:350px;
+    margin:30px auto;
+    box-shadow:0 0 20px rgba(0,255,136,0.15);
+    transition:0.3s;
+}
+
+.script-card:hover{
+    transform:translateY(-5px);
+}
+
+.script-card img{
+    width:100%;
+    display:block;
+}
+
+.script-info{
+    padding:20px;
+    text-align:center;
+}
+
+.script-info h3{
+    margin-bottom:10px;
+    color:#00ff88;
+}
+
+.script-info p{
+    color:#cfcfcf;
+    margin-bottom:15px;
+}
+
+.copy-btn{
+    background:#00ff88;
+    color:black;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.copy-btn:hover{
+    opacity:0.9;
+}
+
+.success{
+    display:none;
+    color:#00ff88;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.home{
+    text-align:center;
+    margin:40px;
+}
+
+.home a{
+    text-decoration:none;
+}
+
+.home button{
+    background:#222;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🐶 Animal Hospital</h1>
+<header>
+    <h1>🐶 Animal Hospital</h1>
+    <p>صفحة سكربتات Animal Hospital</p>
+</header>
 
-<p>هنا تضع معلومات الماب أو الروابط الخاصة به.</p>
+<div class="container">
 
+    <div class="script-card">
 
-<div style="background:#222;padding:20px;border-radius:10px;width:300px;margin:auto;text-align:center;">
+        <img src="animal-script1.png" alt="Animal Hospital Script">
 
-    <img src="animal-script1.png" width="250">
+        <div class="script-info">
 
-    <h3>Animal Hospital Script</h3>
+            <h3>Animal Hospital Script</h3>
 
-    <a href="loadstring(game:HttpGet("https://rblxscripts.net/raw/cyraa-hub-auto-farm-auto-buy-esp-item-pickup-teleport-and-mo-d60e521e"))()">
-        <button>سكريبت حلو</button>
-    </a>
+            <p>انسخ السكربت بضغطة واحدة.</p>
+
+            <button class="copy-btn" onclick="copyScript()">
+                📋 نسخ السكربت
+            </button>
+
+            <div class="success" id="copied">
+                ✅ تم النسخ بنجاح
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
-<a href="index.html">
-<button>العودة للرئيسية</button>
-</a>
+<div class="home">
+    <a href="index.html">
+        <button>🏠 العودة للرئيسية</button>
+    </a>
+</div>
+
+<footer>
+    Bassem Scripts © 2026
+</footer>
+
+<script>
+function copyScript(){
+
+const script = `ضع_السكريبت_هنا`;
+
+navigator.clipboard.writeText(script);
+
+document.getElementById("copied").style.display = "block";
+
+setTimeout(()=>{
+document.getElementById("copied").style.display = "none";
+},3000);
+
+}
+</script>
 
 </body>
 </html>
