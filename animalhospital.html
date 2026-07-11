@@ -5,86 +5,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Animal Hospital | Bassem Scripts</title>
 <link rel="icon" type="image/png" href="favicon.png">
-
+ 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-
+ 
 body{
     background:#0f0f0f;
     color:white;
     font-family:Arial,sans-serif;
 }
-
+ 
 header{
     text-align:center;
     padding:40px 20px;
 }
-
+ 
 header h1{
     color:#ffffff;
     font-size:55px;
 }
-
+ 
 header p{
     color:#bdbdbd;
     margin-top:10px;
 }
-
+ 
 .container{
     max-width:1200px;
     margin:auto;
     padding:20px;
 }
-
+ 
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    margin:30px auto;
+}
+ 
+@media (max-width:900px){
+    .cards-grid{
+        grid-template-columns:1fr;
+        max-width:350px;
+    }
+}
+ 
+.card-row{
+    position:relative;
+}
+ 
 .script-card{
     background:#1a1a1a;
     border-radius:15px;
     overflow:hidden;
-    width:350px;
-    margin:30px auto;
     box-shadow:0 0 20px rgba(255,255,255,0.15);
     transition:0.3s;
+    cursor:pointer;
 }
-
+ 
 .script-card:hover{
     transform:translateY(-5px);
+    box-shadow:0 0 28px rgba(255,255,255,0.25);
 }
-
+ 
 .script-card img{
     width:100%;
     display:block;
 }
-
+ 
 .script-info{
     padding:20px;
     text-align:center;
 }
-
+ 
 .script-info h3{
     margin-bottom:10px;
     color:#ffffff;
 }
-
+ 
 .script-info p{
     color:#cfcfcf;
     margin-bottom:15px;
 }
-
-.copy-btn{
-    background:#00ff88;
-    color:black;
-    border:none;
-    padding:12px 20px;
-    border-radius:10px;
-    font-size:16px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
+ 
 .copy-btn{
     background:#ffffff;
     color:#000000;
@@ -94,24 +101,78 @@ header p{
     font-size:16px;
     cursor:pointer;
     font-weight:bold;
+    width:100%;
 }
-
+ 
 .success{
     display:none;
     color:#ffffff;
     margin-top:10px;
     font-weight:bold;
 }
-
+ 
+/* صندوق الوصف المنفصل - يظهر جنب البطاقة عند الـ hover */
+.info-popup{
+    display:none;
+    position:absolute;
+    top:0;
+    right:calc(100% + 15px);
+    width:260px;
+    background:#1a1a1a;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:18px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    z-index:10;
+}
+ 
+.card-row:hover .info-popup{
+    display:block;
+}
+ 
+.info-popup h4{
+    color:#ffffff;
+    margin-bottom:8px;
+    font-size:15px;
+}
+ 
+.info-popup p{
+    color:#a8a8a8;
+    font-size:13px;
+    line-height:1.6;
+    margin-bottom:10px;
+}
+ 
+.info-popup code{
+    display:block;
+    background:#0f0f0f;
+    color:#7d7d7d;
+    padding:10px;
+    border-radius:8px;
+    font-size:12px;
+    direction:ltr;
+    text-align:left;
+    word-break:break-all;
+}
+ 
+/* على الشاشات الصغيرة، الصندوق ينزل تحت البطاقة بدل ما يطلع جنبها */
+@media (max-width:900px){
+    .info-popup{
+        top:calc(100% + 10px);
+        right:0;
+        width:100%;
+    }
+}
+ 
 .home{
     text-align:center;
     margin:40px;
 }
-
+ 
 .home a{
     text-decoration:none;
 }
-
+ 
 .home button{
     background:#222;
     color:white;
@@ -120,7 +181,7 @@ header p{
     border-radius:10px;
     cursor:pointer;
 }
-
+ 
 footer{
     text-align:center;
     padding:20px;
@@ -128,65 +189,164 @@ footer{
 }
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <header>
     <h1>🐶 Animal Hospital</h1>
     <p>صفحة سكربتات Animal Hospital</p>
 </header>
-
+ 
 <div class="container">
-
-    <div class="script-card">
-
-        <img src="animal-script1.png" alt="Animal Hospital Script">
-
-        <div class="script-info">
-
-            <h3>Animal Hospital Script</h3>
-
-            <p>انسخ السكربت بضغطة واحدة.</p>
-
-            <button class="copy-btn" onclick="copyScript()">
-                📋 نسخ السكربت
-            </button>
-
-            <div class="success" id="copied">
-                ✅ تم النسخ بنجاح
+ 
+    <div class="cards-grid">
+ 
+        <!-- بطاقة 1 -->
+        <div class="card-row">
+            <div class="script-card">
+                <img src="animal-script1.png" alt="Animal Hospital Script 1">
+                <div class="script-info">
+                    <h3>سكربت 1</h3>
+                    <p>انسخ السكربت بضغطة واحدة.</p>
+                    <button class="copy-btn" onclick="copyScript(this, 1)">📋 نسخ السكربت</button>
+                    <div class="success">✅ تم النسخ بنجاح</div>
+                </div>
             </div>
-
+            <div class="info-popup">
+                <h4>وصف السكربت 1</h4>
+                <p>ضيف هنا وصف مختصر لوظيفة السكربت.</p>
+                <code id="preview-1">-- ضيف الكود هنا لاحقاً</code>
+            </div>
         </div>
-
+ 
+        <!-- بطاقة 2 -->
+        <div class="card-row">
+            <div class="script-card">
+                <img src="animal-script2.png" alt="Animal Hospital Script 2">
+                <div class="script-info">
+                    <h3>سكربت 2</h3>
+                    <p>انسخ السكربت بضغطة واحدة.</p>
+                    <button class="copy-btn" onclick="copyScript(this, 2)">📋 نسخ السكربت</button>
+                    <div class="success">✅ تم النسخ بنجاح</div>
+                </div>
+            </div>
+            <div class="info-popup">
+                <h4>وصف السكربت 2</h4>
+                <p>ضيف هنا وصف مختصر لوظيفة السكربت.</p>
+                <code id="preview-2">-- ضيف الكود هنا لاحقاً</code>
+            </div>
+        </div>
+ 
+        <!-- بطاقة 3 -->
+        <div class="card-row">
+            <div class="script-card">
+                <img src="animal-script3.png" alt="Animal Hospital Script 3">
+                <div class="script-info">
+                    <h3>سكربت 3</h3>
+                    <p>انسخ السكربت بضغطة واحدة.</p>
+                    <button class="copy-btn" onclick="copyScript(this, 3)">📋 نسخ السكربت</button>
+                    <div class="success">✅ تم النسخ بنجاح</div>
+                </div>
+            </div>
+            <div class="info-popup">
+                <h4>وصف السكربت 3</h4>
+                <p>ضيف هنا وصف مختصر لوظيفة السكربت.</p>
+                <code id="preview-3">-- ضيف الكود هنا لاحقاً</code>
+            </div>
+        </div>
+ 
+        <!-- بطاقة 4 -->
+        <div class="card-row">
+            <div class="script-card">
+                <img src="animal-script4.png" alt="Animal Hospital Script 4">
+                <div class="script-info">
+                    <h3>سكربت 4</h3>
+                    <p>انسخ السكربت بضغطة واحدة.</p>
+                    <button class="copy-btn" onclick="copyScript(this, 4)">📋 نسخ السكربت</button>
+                    <div class="success">✅ تم النسخ بنجاح</div>
+                </div>
+            </div>
+            <div class="info-popup">
+                <h4>وصف السكربت 4</h4>
+                <p>ضيف هنا وصف مختصر لوظيفة السكربت.</p>
+                <code id="preview-4">-- ضيف الكود هنا لاحقاً</code>
+            </div>
+        </div>
+ 
+        <!-- بطاقة 5 -->
+        <div class="card-row">
+            <div class="script-card">
+                <img src="animal-script5.png" alt="Animal Hospital Script 5">
+                <div class="script-info">
+                    <h3>سكربت 5</h3>
+                    <p>انسخ السكربت بضغطة واحدة.</p>
+                    <button class="copy-btn" onclick="copyScript(this, 5)">📋 نسخ السكربت</button>
+                    <div class="success">✅ تم النسخ بنجاح</div>
+                </div>
+            </div>
+            <div class="info-popup">
+                <h4>وصف السكربت 5</h4>
+                <p>ضيف هنا وصف مختصر لوظيفة السكربت.</p>
+                <code id="preview-5">-- ضيف الكود هنا لاحقاً</code>
+            </div>
+        </div>
+ 
+        <!-- بطاقة 6 -->
+        <div class="card-row">
+            <div class="script-card">
+                <img src="animal-script6.png" alt="Animal Hospital Script 6">
+                <div class="script-info">
+                    <h3>سكربت 6</h3>
+                    <p>انسخ السكربت بضغطة واحدة.</p>
+                    <button class="copy-btn" onclick="copyScript(this, 6)">📋 نسخ السكربت</button>
+                    <div class="success">✅ تم النسخ بنجاح</div>
+                </div>
+            </div>
+            <div class="info-popup">
+                <h4>وصف السكربت 6</h4>
+                <p>ضيف هنا وصف مختصر لوظيفة السكربت.</p>
+                <code id="preview-6">-- ضيف الكود هنا لاحقاً</code>
+            </div>
+        </div>
+ 
     </div>
-
+ 
 </div>
-
+ 
 <div class="home">
     <a href="index.html">
         <button>🏠 العودة للرئيسية</button>
     </a>
 </div>
-
+ 
 <footer>
     Bassem Scripts © 2026
 </footer>
-
+ 
 <script>
-function copyScript(){
-
-const script = `loadstring(game:HttpGet("https://rblxscripts.net/raw/cyraa-hub-auto-farm-auto-buy-esp-item-pickup-teleport-and-mo-d60e521e"))()`;
-
-navigator.clipboard.writeText(script);
-
-document.getElementById("copied").style.display = "block";
-
-setTimeout(()=>{
-document.getElementById("copied").style.display = "none";
-},3000);
-
+// كل سكربت له نص placeholder منفصل - ضيف الكود الفعلي هنا لكل رقم
+const scripts = {
+    1: "-- ضيف كود السكربت 1 هنا",
+    2: "-- ضيف كود السكربت 2 هنا",
+    3: "-- ضيف كود السكربت 3 هنا",
+    4: "-- ضيف كود السكربت 4 هنا",
+    5: "-- ضيف كود السكربت 5 هنا",
+    6: "-- ضيف كود السكربت 6 هنا"
+};
+ 
+function copyScript(button, id){
+    const text = scripts[id];
+    navigator.clipboard.writeText(text);
+ 
+    const successMsg = button.parentElement.querySelector(".success");
+    successMsg.style.display = "block";
+ 
+    setTimeout(()=>{
+        successMsg.style.display = "none";
+    },3000);
 }
 </script>
-
+ 
 </body>
 </html>
+ 
